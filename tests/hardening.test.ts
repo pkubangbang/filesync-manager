@@ -378,7 +378,9 @@ describe('H7: edge-case paths survive a round trip', () => {
     expect(e.index.get('empty.txt')).toBeDefined();
     expect(e.index.get('empty.txt')!.size).toBe(0);
     expect(e.index.get('文件 名前 with space.txt')).toBeDefined();
-    expect(e.index.get(path.join('a', 'b', 'c', 'd', 'deep.txt'))).toBeDefined();
+    // Index keys are always POSIX-relative (the wire format), independent of
+    // the host OS separator — path.join() would produce `a\b\c\d` on Windows.
+    expect(e.index.get('a/b/c/d/deep.txt')).toBeDefined();
   });
 
   it('a zero-byte file served to a peer produces a piece list that verifies', () => {
