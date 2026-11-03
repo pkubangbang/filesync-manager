@@ -1,0 +1,60 @@
+{
+  "name": "@pkubangbang/filesync-manager",
+  "version": "0.1.0",
+  "description": "Transport-agnostic local file sync engine \u2014 content-defined chunking, content-addressed piece store, LWW manifests and tombstones. Bring your own transport (mycc's peer wire is one host).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "typecheck:test": "tsc --noEmit -p tsconfig.test.json",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm run typecheck:test && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pkubangbang/filesync-manager.git"
+  },
+  "homepage": "https://github.com/pkubangbang/filesync-manager#readme",
+  "bugs": {
+    "url": "https://github.com/pkubangbang/filesync-manager/issues"
+  },
+  "keywords": [
+    "filesync",
+    "fastcdc",
+    "content-defined-chunking",
+    "content-addressable",
+    "file-sync",
+    "p2p"
+  ],
+  "license": "MIT",
+  "author": "pkubangbang <pkubangbang@pku.edu.cn>",
+  "engines": {
+    "node": ">=22.22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "chokidar": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.5",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  }
+}
